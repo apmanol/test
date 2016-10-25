@@ -10,6 +10,8 @@ addons:
     - clang-3.8
     - g++-6
 
+install:
+- if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 # Enable C++ support
 language: cpp
 # Compiler selection
