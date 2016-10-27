@@ -1,3 +1,8 @@
+sudo: required
+
+# Enable C++ support
+language: cpp
+
 matrix:
   include:
     - compiler: gcc
@@ -26,12 +31,14 @@ matrix:
             - clang-3.8
       env: COMPILER=clang++-3.8
 
-# Enable C++ support
-language: cpp
+
+before_install:
+- sudo apt-get update -qq
+
 # Build steps
 script:
-   - CXX=$COMPILER make
-   - ./hello-cpp-world
+   - CXX=$COMPILER CXXFLAGS="-fuse-ld=gold" make
+   - ./test_program.x
 #  - mkdir build
 #- cd build
 #- cmake .. && make
